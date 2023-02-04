@@ -2,36 +2,29 @@
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 
-//SOLID
-// O -> Open Closed Prenciple
+//SOLID O -> Open Closed Prenciple  
 
-//ProductTest();
-CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+ProductTest();
 
-foreach (var Category in categoryManager.GetAll())
-{
-    Console.WriteLine(Category.CategoryName);
-}
+//CategoryTest();
 
 static void ProductTest()
 {
     ProductManager productManager = new ProductManager(new EfProductDal());
 
-    foreach (var product in productManager.GetAll())
+    foreach (var product in productManager.GetProductDetails())
     {
-        Console.WriteLine(product.ProductName);
+        Console.WriteLine(product.ProductName   + "/" + product.CategoryName);
     }
-    Console.WriteLine("\n");
+    
+}
 
-    foreach (var product in productManager.GetAllByCategoryId(1))
-    {
-        Console.WriteLine(product.CategoryId + " - " + product.ProductName);
-    }
-    Console.WriteLine("\n");
+static void CategoryTest()
+{
+    CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
 
-    foreach (var product in productManager.GetAllByUnitPrice(15, 60))
+    foreach (var Category in categoryManager.GetAll())
     {
-        Console.WriteLine(product.ProductName + " - " + product.UnitPrice);
+        Console.WriteLine(Category.CategoryName);
     }
-    Console.WriteLine("\n");
 }
