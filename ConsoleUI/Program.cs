@@ -5,22 +5,33 @@ using DataAccess.Concrete.InMemory;
 //SOLID
 // O -> Open Closed Prenciple
 
-ProductManager productManager = new ProductManager(new EfProductDal());
+//ProductTest();
+CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
 
-foreach (var product in productManager.GetAll())
+foreach (var Category in categoryManager.GetAll())
 {
-    Console.WriteLine(product.ProductName);
+    Console.WriteLine(Category.CategoryName);
 }
-Console.WriteLine("\n");
 
-foreach(var product in productManager.GetAllByCategoryId(1))
+static void ProductTest()
 {
-    Console.WriteLine(product.CategoryId + " - " + product.ProductName);
-}
-Console.WriteLine("\n");
+    ProductManager productManager = new ProductManager(new EfProductDal());
 
-foreach (var product in productManager.GetAllByUnitPrice(15,60))
-{
-    Console.WriteLine(product.ProductName + " - " + product.UnitPrice);
+    foreach (var product in productManager.GetAll())
+    {
+        Console.WriteLine(product.ProductName);
+    }
+    Console.WriteLine("\n");
+
+    foreach (var product in productManager.GetAllByCategoryId(1))
+    {
+        Console.WriteLine(product.CategoryId + " - " + product.ProductName);
+    }
+    Console.WriteLine("\n");
+
+    foreach (var product in productManager.GetAllByUnitPrice(15, 60))
+    {
+        Console.WriteLine(product.ProductName + " - " + product.UnitPrice);
+    }
+    Console.WriteLine("\n");
 }
-Console.WriteLine("\n");
